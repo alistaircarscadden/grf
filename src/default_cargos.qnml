@@ -1,0 +1,157 @@
+/* The intention here is to take the default cargos and replace
+ * their payouts.
+ */
+
+switch (FEAT_CARGOS, SELF, constant_profit_cb1, 0) {
+	1000;
+}
+
+switch (FEAT_CARGOS, SELF, pass_profit_cb, getbits(extra_callback_info2, 24, 8)) {
+	0..70: 1000;
+	max(800, 1000 - (getbits(extra_callback_info2, 24, 8) - 70) * 70);
+}
+
+switch (FEAT_CARGOS, SELF, mail_profit_cb, 0) {
+	max(500, 1000 - getbits(extra_callback_info2, 24, 8) * 10);
+}
+
+switch (FEAT_CARGOS, SELF, lvst_profit_cb, getbits(extra_callback_info2, 24, 8)) {
+	0..30: 1000;
+	max(20, 1000 - (getbits(extra_callback_info2, 24, 8) - 30) * 50);
+}
+
+switch (FEAT_CARGOS, SELF, good_profit_cb, getbits(extra_callback_info2, 24, 8)) {
+	0..50: 1000;
+	max(100, 1000 - (getbits(extra_callback_info2, 24, 8) - 50) * 20);
+}
+
+
+item(FEAT_CARGOS, item_cargo_override_PASS, 0){
+	property{
+		number: 0;
+		price_factor: 1.5;
+	}
+	
+	graphics {
+		profit: constant_profit_cb1;
+	}
+}
+
+item(FEAT_CARGOS, item_cargo_override_COAL, 1){
+	property{
+		number: 1;
+		price_factor: 2.1;
+
+	}
+	
+	graphics {
+		profit: constant_profit_cb1;
+	}
+}
+
+item(FEAT_CARGOS, item_cargo_override_MAIL, 2){
+	property{
+		number: 2;
+		price_factor: 1.6;
+
+	}
+	
+	graphics {
+		profit: mail_profit_cb;
+	}
+}
+
+item(FEAT_CARGOS, item_cargo_override_OIL, 3){
+	property{
+		number: 3;
+		price_factor: 2.4;
+
+	}
+	
+	graphics {
+		profit: constant_profit_cb1;
+	}
+}
+
+item(FEAT_CARGOS, item_cargo_override_LVST, 4){
+	property{
+		number: 4;
+		price_factor: 1.1;
+
+	}
+	
+	graphics {
+		profit: lvst_profit_cb;
+	}
+}
+
+item(FEAT_CARGOS, item_cargo_override_GOOD, 5){
+	property{
+		number: 5;
+		price_factor: 2.7;
+
+	}
+	
+	graphics {
+		profit: good_profit_cb;
+	}
+}
+
+item(FEAT_CARGOS, item_cargo_override_GRAI, 6){
+	property{
+		number: 6;
+		price_factor: 1.65;
+
+	}
+	
+	graphics {
+		profit: constant_profit_cb1;
+	}
+}
+
+item(FEAT_CARGOS, item_cargo_override_WOOD, 7){
+	property{
+		number: 7;
+		price_factor: 1.05;
+
+	}
+	
+	graphics {
+		profit: constant_profit_cb1;
+	}
+}
+
+item(FEAT_CARGOS, item_cargo_override_IORE, 8){
+	property{
+		number: 8;
+		price_factor: 2.15;
+	}
+	
+	graphics {
+		profit: constant_profit_cb1;
+	}
+}
+
+item(FEAT_CARGOS, item_cargo_override_STEL, 9){
+	property{
+		number: 9;
+		price_factor: 2.5;
+
+	}
+	
+	graphics {
+		profit: constant_profit_cb1;
+	}
+}
+
+item(FEAT_CARGOS, item_cargo_override_VALU, 10){
+	property{
+		number: 10;
+		price_factor: 3;
+
+	}
+	
+	graphics {
+		profit: constant_profit_cb1;
+	}
+}

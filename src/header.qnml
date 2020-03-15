@@ -7,8 +7,21 @@ grf {
 }
 
 cargotable {
-//  NAME  // ID
-	WOOD, // default
+//  NAME  // ID -- default
+	PASS, // 00
+	COAL, // 01
+	MAIL, // 02
+	OIL_, // 03
+	LVST, // 04
+	GOOD, // 05
+	GRAI, // 06
+	WOOD, // 07
+	IORE, // 08
+	STEL, // 09
+	VALU, // 10
+	
+//  NAME  // ID -- custom
  	CHAR, // 12
 	GRAP  // 13
 }
+
