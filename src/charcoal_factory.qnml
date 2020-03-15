@@ -1,0 +1,66 @@
+item(FEAT_INDUSTRYTILES, item_indt_charcoalfactory0) {
+	property {
+		substitute: 43;
+		accepted_cargos: [ [WOOD, 8] ];
+		land_shape_flags: bitmask(LSF_ONLY_ON_FLAT_LAND);
+	}
+}
+
+tilelayout layout_charcoalfactory_rot0 {
+	0, 0: item_indt_charcoalfactory0;
+	1, 0: item_indt_charcoalfactory0;
+	1, 1: item_indt_charcoalfactory0;
+	1, 2: item_indt_charcoalfactory0;
+}
+
+tilelayout layout_charcoalfactory_rot1 {
+	0, 1: item_indt_charcoalfactory0;
+	1, 1: item_indt_charcoalfactory0;
+	2, 0: item_indt_charcoalfactory0;
+	2, 1: item_indt_charcoalfactory0;
+}
+
+tilelayout layout_charcoalfactory_rot2 {
+	0, 0: item_indt_charcoalfactory0;
+	0, 1: item_indt_charcoalfactory0;
+	0, 2: item_indt_charcoalfactory0;
+	1, 2: item_indt_charcoalfactory0;
+}
+
+tilelayout layout_charcoalfactory_rot3 {
+	0, 0: item_indt_charcoalfactory0;
+	1, 0: item_indt_charcoalfactory0;
+	2, 0: item_indt_charcoalfactory0;
+	0, 1: item_indt_charcoalfactory0;
+}
+
+produce (charcoalfactory_prod, [ WOOD: LOAD_TEMP(0); ], [ CHAR: LOAD_TEMP(0); ], incoming_cargo_waiting("WOOD"))
+
+switch (FEAT_INDUSTRIES, SELF, charcoalfactory_prod_cb, [
+	STORE_TEMP(incoming_cargo_waiting("WOOD"), 0)
+]) {
+	charcoalfactory_prod;
+}
+	
+item(FEAT_INDUSTRIES, item_ind_charcoalfactory) {
+	property {
+		substitute: INDUSTRYTYPE_COAL_MINE;
+		name: string(STR_IND_CHARCOALFACTORY_NAME);
+		
+		cargo_types: [
+			accept_cargo("WOOD"),
+			produce_cargo("CHAR", 0)
+		];
+		
+		layouts: [
+			layout_charcoalfactory_rot0,
+			layout_charcoalfactory_rot1, 
+			layout_charcoalfactory_rot2,
+			layout_charcoalfactory_rot3
+		];
+	}
+	
+	graphics {
+		produce_cargo_arrival: charcoalfactory_prod_cb;
+	}
+}

@@ -1,0 +1,26 @@
+switch (FEAT_CARGOS, SELF, charcoal_profit_cb, 0) {
+	2300;
+}
+	
+
+item(FEAT_CARGOS, item_cargos_charcoal, 12) {
+	property {
+		number: 12;
+		type_name: string(STR_CARG_CHARCOAL_TYPE_NAME);
+		unit_name: string(STR_CARG_CHARCOAL_UNIT_NAME);
+		units_of_cargo: string(STR_CARG_CHARCOAL_UNITS_OF_CARGO);
+		items_of_cargo: string(STR_CARG_CHARCOAL_ITEMS_OF_CARGO);
+		type_abbreviation: string(STR_CARG_CHARCOAL_TYPE_ABBR);
+		weight: 1; // TODO
+		price_factor: 1;
+		station_list_colour: 0x03;
+		cargo_payment_list_colour: 0x03;
+		is_freight: 1;
+		cargo_label: "CHAR";
+		cargo_classes: bitmask(CC_BULK);
+	}
+	
+	graphics {
+		profit: charcoal_profit_cb;
+	}
+}
